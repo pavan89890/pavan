@@ -1,0 +1,99 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+      Contacts
+      <small>select,add,update,delete</small>
+    </h1>
+</section>
+
+  <!-- Main content -->
+  <section class="content container-fluid">
+
+      <div class="box box-success">
+          <div class="box-header with-border">
+                  <h3 class="box-title">Contacts</h3>
+                  <button class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#myModal"
+                    (click)="edit(null)">Add</button>
+                </div>
+     
+      <div class="box-body table-responsive no-padding">
+          <table class="table table-striped" [mfData]="contacts" #mf="mfDataTable" [mfRowsOnPage]="5">
+            <thead>
+              <tr>
+                <th>
+                  <mfDefaultSorter by="">S.No</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter by="mobile">Mobile</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter by="actions">Actions</mfDefaultSorter>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let contact of mf.data;let sn=index">
+                <td>{{sn+1}}</td>
+                <td>{{contact.name}}</td>
+                <td>{{contact.mobile}}</td>
+                <td><i class="glyphicon glyphicon-edit" (click)="edit(contact)" title="Upadate" data-toggle="modal"
+                    data-target="#myModal"></i><i class="glyphicon glyphicon-trash" (click)="delete(contact.id)"
+                    title="Delete"></i></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="12">
+                  <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        
+      </div>
+    </div>
+  
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+          <ng-container *ngIf="contact.id">Update Contact</ng-container>
+          <ng-container *ngIf="!contact.id">Add Contact</ng-container>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form autocomplete="off" #form="ngForm" novalidate>
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter name" name="contact.name"
+              [(ngModel)]="contact.name" #nameVal="ngModel" required>
+            <p class="text-danger" *ngIf="(nameVal.touched || nameVal.dirty) &&  nameVal.invalid">Please enter name</p>
+          </div>
+          <div class="form-group">
+            <label for="mobile">Mobile:</label>
+            <input type="number" class="form-control" id="mobile" placeholder="Enter mobile number" maxlength="10"
+              name="contact.mobile" [(ngModel)]="contact.mobile" #mobileVal="ngModel" required>
+            <p class="text-danger" *ngIf="(mobileVal.touched || mobileVal.dirty) &&  mobileVal.invalid">Please enter mobile
+              number</p>
+          </div>
+          <button type="button" class="btn btn-success" (click)="add(form)" [disabled]="form.invalid">
+            <ng-container *ngIf="contact.id">Update</ng-container>
+            <ng-container *ngIf="!contact.id">Add</ng-container>
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  </section>
+  
