@@ -52,8 +52,10 @@ export class ContactsComponent implements OnInit {
   }
 
   delete(id:string){
-    this.apiService.deleteObject(id,this.url);
-    this.get();
+    if (confirm("Are you sure you want to delete?")) {
+      this.apiService.deleteObject(id,this.url);
+      this.get();
+    }
   }
 
 }

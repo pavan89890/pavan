@@ -4,4 +4,6 @@ export class JobDetail {
     public doj:any;
     public dol:any;
     public experience:string;
+    public createdOn:Date;
+    public updatedOn:Date;
 }

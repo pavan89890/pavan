@@ -24,7 +24,7 @@ export class JobDetailsComponent implements OnInit {
   }
 
   get(){
-    this.apiService.getObjects(this.url)
+    this.apiService.getOrderedObjects(this.url,"doj","desc")
     .then(result => {
       this.jobDetails=result.map(x=>{
         return {
@@ -89,8 +89,10 @@ export class JobDetailsComponent implements OnInit {
   
 
   delete(id:string){
-    this.apiService.deleteObject(id,this.url);
-    this.get();
+    if (confirm("Are you sure you want to delete?")) {
+      this.apiService.deleteObject(id,this.url);
+      this.get();
+    }
   }
 
 }

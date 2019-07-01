@@ -12,8 +12,13 @@
     <div class="box box-success">
         <div class="box-header with-border">
             <h3 class="box-title">Chits</h3>
-            <button class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#myModal"
+            &nbsp;<span class="label label-info">{{noOfChitsPaid+"/"+noOfChits+" M"}}</span> 
+            <span class="pull-right">
+                D <span class="label label-info">{{totalAmountPaid}}</span> M <span class="label label-info">{{totalChitAmount}}</span>
+                &nbsp;&nbsp;
+            <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
                 (click)="edit(null)">Add</button>
+        </span>
         </div>
 
         <div class="box-body table-responsive no-padding">

@@ -9,77 +9,80 @@
 <!-- Main content -->
 <section class="content container-fluid">
 
-        <div class="box box-success">
-                <div class="box-header with-border">
-                        <h3 class="box-title">Fds</h3>
-                        <button class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#myModal"
-                          (click)="edit(null)">Add</button>
-                      </div>
-           
-            <div class="box-body table-responsive no-padding">
-                        <table class="table table-striped" [mfData]="fds" #mf="mfDataTable" [mfRowsOnPage]="5">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <mfDefaultSorter by="">S.No</mfDefaultSorter>
-                                    </th>
-                                    <th>
-                                        <mfDefaultSorter by="bank">Bank</mfDefaultSorter>
-                                    </th>
-                                    <th>
-                                        <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
-                                    </th>
-                                    <th>
-                                        <mfDefaultSorter by="roi">ROI</mfDefaultSorter>
-                                    </th>
-                                    <th>
-                                        <mfDefaultSorter by="matAmount">Matured</mfDefaultSorter>
-                                    </th>
-                                    <th>
-                                        <mfDefaultSorter by="depOn">Deposited On</mfDefaultSorter>
-                                    </th>
-                                    <th>
-                                        <mfDefaultSorter by="period">Period</mfDefaultSorter>
-                                    </th>
-                                    <th>
-                                        <mfDefaultSorter by="maturedOn">Matured On</mfDefaultSorter>
-                                    </th>
-                                    <th>
-                                        <mfDefaultSorter by="rem">Remaining</mfDefaultSorter>
-                                    </th>
-                                    <th>
-                                        <mfDefaultSorter by="actions">Actions</mfDefaultSorter>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let fd of mf.data;let sn=index">
-                                    <td>{{sn+1}}</td>
-                                    <td>{{fd.bank}}</td>
-                                    <td>{{fd.amount}}</td>
-                                    <td>{{fd.roi}}</td>
-                                    <td>{{fd.matAmount}}</td>
-                                    <td>{{getFormattedDate(fd.depOn)}}</td>
-                                    <td>{{fd.period}}</td>
-                                    <td>{{getFormattedDate(fd.matOn)}}</td>
-                                    <td>{{fd.rem}}</td>
-                                    <td><i class="glyphicon glyphicon-edit" (click)="edit(fd)" title="Upadate"
-                                            data-toggle="modal" data-target="#myModal"></i><i
-                                            class="glyphicon glyphicon-trash" (click)="delete(fd.id)"
-                                            title="Delete"></i></td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="12">
-                                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-          
+    <div class="box box-success">
+        <div class="box-header with-border">
+            <h3 class="box-title">Fds</h3>
+            <span class="pull-right">
+                <span class="label label-info">{{totalDeposited}} / {{totalMatured}}</span>
+                &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
+                    (click)="edit(null)">Add</button>
+            </span>
+
+        </div>
+
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-striped" [mfData]="fds" #mf="mfDataTable" [mfRowsOnPage]="5">
+                <thead>
+                    <tr>
+                        <th>
+                            <mfDefaultSorter by="">S.No</mfDefaultSorter>
+                        </th>
+                        <th>
+                            <mfDefaultSorter by="bank">Bank</mfDefaultSorter>
+                        </th>
+                        <th>
+                            <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
+                        </th>
+                        <th>
+                            <mfDefaultSorter by="roi">ROI</mfDefaultSorter>
+                        </th>
+                        <th>
+                            <mfDefaultSorter by="matAmount">Matured</mfDefaultSorter>
+                        </th>
+                        <th>
+                            <mfDefaultSorter by="depOn">Deposited On</mfDefaultSorter>
+                        </th>
+                        <th>
+                            <mfDefaultSorter by="period">Period</mfDefaultSorter>
+                        </th>
+                        <th>
+                            <mfDefaultSorter by="matOn">Matured On</mfDefaultSorter>
+                        </th>
+                        <th>
+                            <mfDefaultSorter by="rem">Remaining</mfDefaultSorter>
+                        </th>
+                        <th>
+                            <mfDefaultSorter by="actions">Actions</mfDefaultSorter>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let fd of mf.data;let sn=index">
+                        <td>{{sn+1}}</td>
+                        <td>{{fd.bank}}</td>
+                        <td>{{fd.amount}}</td>
+                        <td>{{fd.roi}}</td>
+                        <td>{{fd.matAmount}}</td>
+                        <td>{{getFormattedDate(fd.depOn)}}</td>
+                        <td>{{fd.period}}</td>
+                        <td>{{getFormattedDate(fd.matOn)}}</td>
+                        <td>{{fd.rem}}</td>
+                        <td><i class="glyphicon glyphicon-edit" (click)="edit(fd)" title="Upadate" data-toggle="modal"
+                                data-target="#myModal"></i><i class="glyphicon glyphicon-trash" (click)="delete(fd.id)"
+                                title="Delete"></i></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="12">
+                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -104,7 +107,8 @@
                                     <option value="undefined">--Select Bank--</option>
                                     <option value='kcbs'>kcbs</option>
                                 </select>
-                                <p class="text-danger" *ngIf="(bankVal.touched || bankVal.dirty) &&  bankVal.invalid">Please
+                                <p class="text-danger" *ngIf="(bankVal.touched || bankVal.dirty) &&  bankVal.invalid">
+                                    Please
                                     select bank</p>
                             </div>
                         </div>
@@ -112,28 +116,33 @@
                             <label for="amount">Amount:</label>
                             <input type="number" class="form-control" id="amount" placeholder="Enter amount"
                                 name="fd.amount" [(ngModel)]="fd.amount" #amountVal="ngModel" required>
-                            <p class="text-danger" *ngIf="(amountVal.touched || amountVal.dirty) &&  amountVal.invalid">Please
+                            <p class="text-danger" *ngIf="(amountVal.touched || amountVal.dirty) &&  amountVal.invalid">
+                                Please
                                 enter amount</p>
                         </div>
                         <div class="form-group">
                             <label for="roi">ROI:</label>
                             <input type="number" class="form-control" id="roi" placeholder="Enter roi" name="fd.roi"
                                 [(ngModel)]="fd.roi" #roiVal="ngModel" required>
-                            <p class="text-danger" *ngIf="(roiVal.touched || roiVal.dirty) &&  roiVal.invalid">Please enter
+                            <p class="text-danger" *ngIf="(roiVal.touched || roiVal.dirty) &&  roiVal.invalid">Please
+                                enter
                                 roi</p>
                         </div>
                         <div class="form-group">
                             <label for="depOn">Deposited On:</label>
                             <input type="date" class="form-control" id="depOn" placeholder="Select Deposited On"
                                 name="fd.depOn" [(ngModel)]="fd.depOn" #depOnVal="ngModel" required>
-                            <p class="text-danger" *ngIf="(depOnVal.touched || depOnVal.dirty) &&  depOnVal.invalid">Please
+
+                                <p class="text-danger" *ngIf="(depOnVal.touched || depOnVal.dirty) &&  depOnVal.invalid">
+                                Please
                                 select Deposited On</p>
                         </div>
                         <div class="form-group">
                             <label for="period">Period:</label>
                             <input type="number" class="form-control" id="period" placeholder="Enter period"
                                 name="fd.period" [(ngModel)]="fd.period" #periodVal="ngModel" required>
-                            <p class="text-danger" *ngIf="(periodVal.touched || periodVal.dirty) &&  periodVal.invalid">Please
+                            <p class="text-danger" *ngIf="(periodVal.touched || periodVal.dirty) &&  periodVal.invalid">
+                                Please
                                 enter period</p>
                         </div>
                         <button type="button" class="btn btn-success" (click)="add(form)" [disabled]="form.invalid">

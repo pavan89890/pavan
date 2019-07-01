@@ -12,7 +12,9 @@ export class FdsComponent implements OnInit {
 
   
 
-  url:string="fds"
+  url:string="fds";
+  totalDeposited:number=0;
+  totalMatured:number=0;
 
   constructor(private apiService:ApiService) {
     
@@ -28,7 +30,7 @@ export class FdsComponent implements OnInit {
   add(form:NgForm){
     delete this.fd.rem;
     this.fd.matAmount=this.fd.amount + ((this.fd.amount * this.fd.roi) / 100);
-    
+    this.fd.depOn=new Date(this.fd.depOn);
     this.fd.matOn = new Date(this.fd.depOn);
     this.fd.matOn.setMonth(this.fd.matOn.getMonth() + this.fd.period);
 
@@ -42,17 +44,21 @@ export class FdsComponent implements OnInit {
   }
 
   get(){
-    this.apiService.getObjects(this.url).then(result=>{
+    this.totalDeposited=0;
+    this.totalMatured=0;
+    this.apiService.getOrderedObjects(this.url,"matOn","desc").then(result=>{
       this.fds=(result.map(x=>{
+        this.totalDeposited+=x.payload.doc.data()['amount'];
+        this.totalMatured+=x.payload.doc.data()['matAmount'];
         return {
           id:x.payload.doc.id,
           bank:x.payload.doc.data()['bank'],
           amount:x.payload.doc.data()['amount'],
           roi:x.payload.doc.data()['roi'],
           matAmount:x.payload.doc.data()['matAmount'],
-          depOn:this.getFormattedDate(x.payload.doc.data()['depOn']),
+          depOn:x.payload.doc.data()['depOn'],
           period:x.payload.doc.data()['period'],
-          matOn:this.getFormattedDate(x.payload.doc.data()['matOn']),
+          matOn:x.payload.doc.data()['matOn'],
           rem: this.getAge(this.stringToDate(x.payload.doc.data()['matOn']), new Date()),
         }
       }));
@@ -98,8 +104,10 @@ export class FdsComponent implements OnInit {
   
 
   delete(id:string){
-    this.apiService.deleteObject(id,this.url);
-    this.get();
+    if (confirm("Are you sure you want to delete?")) {
+      this.apiService.deleteObject(id,this.url);
+      this.get();
+    }
   }
 
 

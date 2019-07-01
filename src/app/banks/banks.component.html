@@ -11,13 +11,16 @@
   <div class="box box-success">
     <div class="box-header with-border">
       <h3 class="box-title">Banks</h3>
-      <button class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#myModal"
+      <span class="pull-right">
+      <span class="label label-info">{{totalBalance}}</span>
+     &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
         (click)="edit(null)">Add</button>
+        </span>
     </div>
 
     <!-- /.box-header -->
     <div class="box-body table-responsive no-padding">
-      <table class="table table-striped" [mfData]="banks" #mf="mfDataTable" [mfRowsOnPage]="5">
+      <table class="table table-striped" [mfData]="banks" #mf="mfDataTable" [mfRowsOnPage]="6">
         <thead>
           <tr>
             <th>
@@ -47,7 +50,7 @@
         <tfoot>
           <tr>
             <td colspan="12">
-              <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+              <mfBootstrapPaginator [rowsOnPageSet]="[6,10,25]"></mfBootstrapPaginator>
             </td>
           </tr>
         </tfoot>

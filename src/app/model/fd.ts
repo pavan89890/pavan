@@ -8,4 +8,6 @@ export class Fd {
     public period:number;
     public matOn:any;
     public rem:any;
+    public createdOn:Date;
+    public updatedOn:Date;
 }

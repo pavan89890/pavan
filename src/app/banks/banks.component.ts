@@ -9,55 +9,60 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./banks.component.css']
 })
 export class BanksComponent implements OnInit {
-  
-  url:string="banks"
 
-  constructor(private apiService:ApiService) { }
+  url: string = "banks"
 
-  bank=new Bank();
-  banks:Bank[]=[];
-  
+  constructor(private apiService: ApiService) { }
+
+  bank = new Bank();
+  banks: Bank[] = [];
+  totalBalance: number = 0;
+
   ngOnInit() {
     this.get();
   }
 
-  add(form:NgForm){
-    
-    if(this.bank.id){
-      this.apiService.updateObject(this.bank.id,this.bank,this.url);
-    }else{
-      this.apiService.addObject(this.bank,this.url);
+  add(form: NgForm) {
+
+    if (this.bank.id) {
+      this.apiService.updateObject(this.bank.id, this.bank, this.url);
+    } else {
+      this.apiService.addObject(this.bank, this.url);
     }
     form.resetForm();
     this.get();
   }
 
-  get(){
-    this.apiService.getObjects(this.url).then(result=>{
-      this.banks=(result.map(x=>{
+  get() {
+    this.totalBalance=0;
+    this.apiService.getOrderedObjects(this.url,"balance","desc").then(result => {
+      this.banks = (result.map(x => {
+        this.totalBalance += x.payload.doc.data()['balance'];
         return {
-          id:x.payload.doc.id,
-          name:x.payload.doc.data()['name'],
-          balance:x.payload.doc.data()['balance']
+          id: x.payload.doc.id,
+          name: x.payload.doc.data()['name'],
+          balance: x.payload.doc.data()['balance']
         }
       }));
     });
   }
 
-  edit(bank:Bank){
-    if(bank){
-      this.bank=bank;
-    }else{
-      this.bank=new Bank();
+  edit(bank: Bank) {
+    if (bank) {
+      this.bank = bank;
+    } else {
+      this.bank = new Bank();
     }
-    
+
   }
 
-  
 
-  delete(id:string){
-    this.apiService.deleteObject(id,this.url);
-    this.get();
+
+  delete(id: string) {
+    if (confirm("Are you sure you want to delete?")) {
+      this.apiService.deleteObject(id, this.url);
+      this.get();
+    }
   }
 
 }
