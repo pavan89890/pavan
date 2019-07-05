@@ -31,6 +31,11 @@ export class ChitsComponent implements OnInit {
 
   add(form:NgForm){
     this.chit.profit=this.chit.actualAmount-this.chit.paidAmount;
+
+    this.chit.paidOn=new Date('1-'+this.chit.month+'-'+this.chit.year+'');
+
+    console.log(this.chit.paidOn);
+
     if(this.chit.id){
       this.apiService.updateObject(this.chit.id,this.chit,this.url);
     }else{
@@ -43,7 +48,7 @@ export class ChitsComponent implements OnInit {
   get(){
     this.totalAmountPaid=0;
     this.noOfChitsPaid=0;
-    this.apiService.getOrderedObjects(this.url,"updatedOn","desc").then(result=>{
+    this.apiService.getOrderedObjects(this.url,"paidOn","desc").then(result=>{
       this.chits=(result.map(x=>{
         this.totalAmountPaid+=x.payload.doc.data()['actualAmount'];
         this.noOfChitsPaid++;
@@ -53,7 +58,8 @@ export class ChitsComponent implements OnInit {
           year:x.payload.doc.data()['year'],
           actualAmount:x.payload.doc.data()['actualAmount'],
           paidAmount:x.payload.doc.data()['paidAmount'],
-          profit:x.payload.doc.data()['profit']
+          profit:x.payload.doc.data()['profit'],
+          paidOn:x.payload.doc.data()['paidOn']
         }
       }));
      
