@@ -24,6 +24,10 @@ import { BanksComponent } from './banks/banks.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { ChitsComponent } from './chits/chits.component';
 import { FdsComponent } from './fds/fds.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import {ReactiveFormsModule} from '@angular/forms'
 
 
 
@@ -39,7 +43,8 @@ import { FdsComponent } from './fds/fds.component';
     BanksComponent,
     JobDetailsComponent,
     ChitsComponent,
-    FdsComponent
+    FdsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +53,7 @@ import { FdsComponent } from './fds/fds.component';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     FormsModule,
+    ReactiveFormsModule,
     DataTableModule
   ],
   providers: [],
