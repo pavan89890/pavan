@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Chit } from '../model/chit';
 import { NgForm } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -19,14 +20,30 @@ export class ChitsComponent implements OnInit {
   totalAmountPaid:number=0;
 
   constructor(private apiService:ApiService) { 
-    this.get();
+    
   }
 
   chit=new Chit();
   chits:Chit[]=[];
   
+  dtTrigger: Subject<any> = new Subject();
+  dtOptions: any = {};
+
   ngOnInit() {
     
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      jQueryUI: false,
+      processing:true,
+      dom: 'Bfrtip',
+      buttons: [
+        'copy',
+        'print',
+        'excel',
+        'pdf'
+      ]
+    };
+    this.get();
   }
 
   add(form:NgForm){
@@ -62,7 +79,9 @@ export class ChitsComponent implements OnInit {
           paidOn:x.payload.doc.data()['paidOn']
         }
       }));
-     
+      this.dtTrigger.next();
+      $('#tableId').DataTable().clear();
+      $('#tableId').DataTable().destroy();
     });
   }
 

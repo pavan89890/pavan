@@ -21,43 +21,24 @@
         </div>
 
         <div class="box-body table-responsive no-padding">
-            <table class="table table-striped" [mfData]="fds" #mf="mfDataTable" [mfRowsOnPage]="5">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                    class="table table-bordered" id="tableId">
                 <thead>
                     <tr>
-                        <th>
-                            <mfDefaultSorter by="">S.No</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="bank">Bank</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="roi">ROI</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="matAmount">Matured</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="depOn">Deposited On</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="period">Period</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="matOn">Matured On</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="rem">Remaining</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="actions">Actions</mfDefaultSorter>
-                        </th>
+                        <th>S.No</th>
+                        <th>Bank</th>
+                        <th>Amount</th>
+                        <th>ROI</th>
+                        <th>Matured</th>
+                        <th>Deposited On</th>
+                        <th>Period</th>
+                        <th>Matured On</th>
+                        <th>Remaining</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let fd of mf.data;let sn=index">
+                    <tr *ngFor="let fd of fds;let sn=index">
                         <td>{{sn+1}}</td>
                         <td>{{fd.bank}}</td>
                         <td>{{fd.amount}}</td>
@@ -72,13 +53,6 @@
                                 title="Delete"></i></td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="12">
-                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                        </td>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>

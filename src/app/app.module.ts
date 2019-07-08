@@ -29,6 +29,9 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import {ReactiveFormsModule} from '@angular/forms'
 
+// jquery datatables
+import { DataTablesModule } from 'angular-datatables';
+
 
 
 @NgModule({
@@ -54,7 +57,8 @@ import {ReactiveFormsModule} from '@angular/forms'
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
-    DataTableModule
+    DataTableModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

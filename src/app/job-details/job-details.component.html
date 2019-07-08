@@ -18,31 +18,20 @@
 
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
-            <table class="table table-striped" [mfData]="jobDetails" #mf="mfDataTable" [mfRowsOnPage]="5">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+        class="table table-bordered" id="tableId">
                 <thead>
                     <tr>
-                        <th>
-                            <mfDefaultSorter by="">S.No</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="companyName">Company Name</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="doj">DOJ</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="dol">DOL</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="experience">Experience</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="actions">Actions</mfDefaultSorter>
-                        </th>
+                        <th>S.No</th>
+                        <th>Company Name</th>
+                        <th>DOJ</th>
+                        <th>DOL</th>
+                        <th>Experience</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let jobDetail of mf.data;let sn=index">
+                    <tr *ngFor="let jobDetail of jobDetails;let sn=index">
                         <td>{{sn+1}}</td>
                         <td>{{jobDetail.companyName}}</td>
                         <td>{{getFormattedDate(jobDetail.doj)}}</td>
@@ -53,13 +42,6 @@
                                 (click)="delete(jobDetail.id)" title="Delete"></i></td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="12">
-                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                        </td>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>

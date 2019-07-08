@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { JobDetail } from '../model/job-detail';
 import { NgForm } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-job-details',
@@ -19,8 +20,24 @@ export class JobDetailsComponent implements OnInit {
   jobDetail=new JobDetail();
   jobDetails:JobDetail[]=[];
   
+  dtTrigger: Subject<any> = new Subject();
+  dtOptions: any = {};
+
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      jQueryUI: false,
+      processing:true,
+      dom: 'Bfrtip',
+      buttons: [
+        'copy',
+        'print',
+        'excel',
+        'pdf'
+      ]
+    };
     this.get();
+    
   }
 
   get(){
@@ -34,8 +51,12 @@ export class JobDetailsComponent implements OnInit {
           dol:x.payload.doc.data()['dol'],
           experience:this.getAge(this.stringToDate(x.payload.doc.data()['dol']),this.stringToDate(x.payload.doc.data()['doj']))
         }
-      })
+      });
+      this.dtTrigger.next();
+    $('#tableId').DataTable().clear();
+    $('#tableId').DataTable().destroy();
     })
+    
   }
 
   add(form:NgForm){

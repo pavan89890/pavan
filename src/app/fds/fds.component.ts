@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../services/api.service'
 import { Fd } from '../model/fd';
 import { NgForm } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-fds',
@@ -23,8 +24,23 @@ export class FdsComponent implements OnInit {
   fd=new Fd();
   fds:Fd[]=[];
   
+  dtTrigger: Subject<any> = new Subject();
+  dtOptions: any = {};
+
   ngOnInit() {
     this.get();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      jQueryUI: false,
+      processing:true,
+      dom: 'Bfrtip',
+      buttons: [
+        'copy',
+        'print',
+        'excel',
+        'pdf'
+      ]
+    };
   }
 
   add(form:NgForm){
@@ -62,6 +78,9 @@ export class FdsComponent implements OnInit {
           rem: this.getAge(this.stringToDate(x.payload.doc.data()['matOn']), new Date()),
         }
       }));
+      this.dtTrigger.next();
+      $('#tableId').DataTable().clear();
+      $('#tableId').DataTable().destroy();
     });
   }
 

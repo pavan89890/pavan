@@ -17,25 +17,20 @@
                 </div>
      
       <div class="box-body table-responsive no-padding">
-          <table class="table table-striped" [mfData]="contacts" #mf="mfDataTable" [mfRowsOnPage]="5">
+          <div class="row">
+              <div class="col-sm-12">
+          <div class="table-responsive">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered" id="contactsTable">
             <thead>
               <tr>
-                <th>
-                  <mfDefaultSorter by="">S.No</mfDefaultSorter>
-                </th>
-                <th>
-                  <mfDefaultSorter by="name">Name</mfDefaultSorter>
-                </th>
-                <th>
-                  <mfDefaultSorter by="mobile">Mobile</mfDefaultSorter>
-                </th>
-                <th>
-                  <mfDefaultSorter by="actions">Actions</mfDefaultSorter>
-                </th>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let contact of mf.data;let sn=index">
+              <tr *ngFor="let contact of contacts;let sn=index">
                 <td>{{sn+1}}</td>
                 <td>{{contact.name}}</td>
                 <td>{{contact.mobile}}</td>
@@ -44,15 +39,10 @@
                     title="Delete"></i></td>
               </tr>
             </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="12">
-                  <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                </td>
-              </tr>
-            </tfoot>
           </table>
-        
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   

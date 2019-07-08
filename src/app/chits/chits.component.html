@@ -22,34 +22,21 @@
         </div>
 
         <div class="box-body table-responsive no-padding">
-            <table class="table table-striped" [mfData]="chits" #mf="mfDataTable" [mfRowsOnPage]="5">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+        class="table table-bordered" id="tableId">
                 <thead>
                     <tr>
-                        <th>
-                            <mfDefaultSorter by="">S.No</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="month">Month</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="year">Year</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="actualAmount">Actual Amount</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="paidAmount">Paid Amount</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="profit">Profit</mfDefaultSorter>
-                        </th>
-                        <th>
-                            <mfDefaultSorter by="actions">Actions</mfDefaultSorter>
-                        </th>
+                        <th>S.No</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th>Actual Amount</th>
+                        <th>Paid Amount</th>
+                        <th>Profit</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let chit of mf.data;let sn=index">
+                    <tr *ngFor="let chit of chits;let sn=index">
                         <td>{{sn+1}}</td>
                         <td>{{chit.month}}</td>
                         <td>{{chit.year}}</td>
@@ -61,13 +48,6 @@
                                 (click)="delete(chit.id)" title="Delete"></i></td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="12">
-                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                        </td>
-                    </tr>
-                </tfoot>
             </table>
 
         </div>

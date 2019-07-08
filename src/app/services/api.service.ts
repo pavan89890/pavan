@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,26 @@ import {AngularFirestore} from '@angular/fire/firestore';
 export class ApiService {
 
   constructor(private firestore:AngularFirestore) { }
+
+  dtTrigger: Subject<any> = new Subject();
+  dtOptions: any ={
+    pagingType: 'full_numbers',
+    jQueryUI: false,
+    processing:true,
+    dom: 'Bfrtip',
+    buttons: [
+      'copy',
+      'print',
+      'excel',
+      'pdf'
+    ]
+  };
+  
+  renderDataTable(){
+      this.dtTrigger.next();
+      $('#tableId').DataTable().clear();
+      $('#tableId').DataTable().destroy();
+  }
 
   getObjects(url:string):any{
     

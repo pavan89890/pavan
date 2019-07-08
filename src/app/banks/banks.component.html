@@ -12,33 +12,26 @@
     <div class="box-header with-border">
       <h3 class="box-title">Banks</h3>
       <span class="pull-right">
-      <span class="label label-info">{{totalBalance}}</span>
-     &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
-        (click)="edit(null)">Add</button>
-        </span>
+        <span class="label label-info">{{totalBalance}}</span>
+        &nbsp; &nbsp;<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
+          (click)="edit(null)">Add</button>
+      </span>
     </div>
 
     <!-- /.box-header -->
     <div class="box-body table-responsive no-padding">
-      <table class="table table-striped" [mfData]="banks" #mf="mfDataTable" [mfRowsOnPage]="6">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+        class="table table-bordered" id="tableId">
         <thead>
-          <tr>
-            <th>
-              <mfDefaultSorter by="">S.No</mfDefaultSorter>
-            </th>
-            <th>
-              <mfDefaultSorter by="name">Name</mfDefaultSorter>
-            </th>
-            <th>
-              <mfDefaultSorter by="balance">Balance</mfDefaultSorter>
-            </th>
-            <th>
-              <mfDefaultSorter by="actions">Actions</mfDefaultSorter>
-            </th>
+         <tr>
+            <th>S.No</th> 
+            <th>Name</th>
+            <th>Balance</th> 
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let bank of mf.data;let sn=index">
+          <tr *ngFor="let bank of banks;let sn=index">
             <td>{{sn+1}}</td>
             <td>{{bank.name}}</td>
             <td>{{bank.balance}}</td>
@@ -47,13 +40,6 @@
                 title="Delete"></i></td>
           </tr>
         </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="12">
-              <mfBootstrapPaginator [rowsOnPageSet]="[6,10,25]"></mfBootstrapPaginator>
-            </td>
-          </tr>
-        </tfoot>
       </table>
     </div>
 

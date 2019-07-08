@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Contact } from '../model/contact';
 import { ApiService } from '../services/api.service';
 import { NgForm } from "@angular/forms/forms";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-contacts',
@@ -14,10 +15,25 @@ export class ContactsComponent implements OnInit {
 
   contact:Contact=new Contact();
   contacts:Contact[]=[];
-  url:string="contacts"
+  url:string="contacts";
+
+  dtTrigger: Subject<any> = new Subject();
+  dtOptions: any = {};
 
   ngOnInit() {
     this.get();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      jQueryUI: false,
+      processing:true,
+      dom: 'Bfrtip',
+      buttons: [
+        'copy',
+        'print',
+        'excel',
+        'pdf'
+      ]
+    };
   }
 
   add(form:NgForm){
@@ -40,6 +56,9 @@ export class ContactsComponent implements OnInit {
           mobile:x.payload.doc.data()['mobile']
         }
       }));
+      this.dtTrigger.next();
+      $('#tableId').DataTable().clear();
+      $('#tableId').DataTable().destroy();
     });
   }
 

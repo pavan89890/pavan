@@ -12,3 +12,7 @@
     cursor:pointer;
     font-size: 20px;
 }
+
+.table-responsive{
+    margin:5px;
+}
