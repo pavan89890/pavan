@@ -16,6 +16,7 @@ const routes: Routes = [
   {path: 'banks' , component: BanksComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'fds' , component: FdsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'chits' , component: ChitsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
+  {path: '' ,component:DashboardComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'login' , component: LoginComponent}
 ];
 

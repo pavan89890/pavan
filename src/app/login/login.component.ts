@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+declare var $: any;
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,8 @@ export class LoginComponent implements OnInit {
      }
 
   ngOnInit() {
+    $("body").removeClass('skin-purple sidebar-mini');
+    $("body").css("background-color","#ecf0f5");
   }
 
   login(){

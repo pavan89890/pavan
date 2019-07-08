@@ -1,11 +1,10 @@
-<app-appheader></app-appheader>
-<app-appmenu></app-appmenu>
+<app-appheader *ngIf="auth.isLoggednIn()"></app-appheader>
+<app-appmenu *ngIf="auth.isLoggednIn()"></app-appmenu>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <router-outlet></router-outlet>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
-<app-appfooter></app-appfooter>
-<app-appsetting></app-appsetting>
+<app-appfooter *ngIf="auth.isLoggednIn()"></app-appfooter>
+<app-appsetting *ngIf="auth.isLoggednIn()"></app-appsetting>
