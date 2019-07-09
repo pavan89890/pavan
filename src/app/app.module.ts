@@ -18,21 +18,14 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { FormsModule }   from '@angular/forms';
 
-// angular 6 datatable
-import {DataTableModule} from "angular-6-datatable";
 import { BanksComponent } from './banks/banks.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { ChitsComponent } from './chits/chits.component';
 import { FdsComponent } from './fds/fds.component';
 import { LoginComponent } from './login/login.component';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
 import {ReactiveFormsModule} from '@angular/forms'
-
-// jquery datatables
 import { DataTablesModule } from 'angular-datatables';
-
-
+import { RmsComponent } from './rms/rms.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +40,8 @@ import { DataTablesModule } from 'angular-datatables';
     JobDetailsComponent,
     ChitsComponent,
     FdsComponent,
-    LoginComponent
+    LoginComponent,
+    RmsComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +51,6 @@ import { DataTablesModule } from 'angular-datatables';
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
-    DataTableModule,
     DataTablesModule
   ],
   providers: [],

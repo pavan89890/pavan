@@ -20,7 +20,6 @@
     "@angular/platform-browser": "~8.0.3",
     "@angular/platform-browser-dynamic": "~8.0.3",
     "@angular/router": "~8.0.3",
-    "angular-6-datatable": "^0.8.0",
     "angular-datatables": "^8.0.0",
     "datatables.net": "^1.10.19",
     "datatables.net-buttons": "^1.5.6",

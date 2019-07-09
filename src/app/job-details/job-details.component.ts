@@ -53,8 +53,8 @@ export class JobDetailsComponent implements OnInit {
         }
       });
       this.dtTrigger.next();
-    $('#tableId').DataTable().clear();
-    $('#tableId').DataTable().destroy();
+    $('#jobDetailsTableId').DataTable().clear();
+    $('#jobDetailsTableId').DataTable().destroy();
     })
     
   }

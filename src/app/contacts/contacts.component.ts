@@ -57,8 +57,8 @@ export class ContactsComponent implements OnInit {
         }
       }));
       this.dtTrigger.next();
-      $('#tableId').DataTable().clear();
-      $('#tableId').DataTable().destroy();
+      $('#contactsTableId').DataTable().clear();
+      $('#contactsTableId').DataTable().destroy();
     });
   }
 

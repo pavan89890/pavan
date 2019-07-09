@@ -79,8 +79,8 @@ export class FdsComponent implements OnInit {
         }
       }));
       this.dtTrigger.next();
-      $('#tableId').DataTable().clear();
-      $('#tableId').DataTable().destroy();
+      $('#fdsTableId').DataTable().clear();
+      $('#fdsTableId').DataTable().destroy();
     });
   }
 

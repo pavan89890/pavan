@@ -1,0 +1,194 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+      Rms
+      <small>select,add,update,delete</small>
+    </h1>
+  </section>
+  
+  <!-- Main content -->
+  <section class="content container-fluid">
+    <div class="box box-success">
+      <div class="box-header with-border">
+        <h3 class="box-title">Rms</h3>
+        <span class="pull-right">
+          <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal"
+            (click)="edit(null)">Add</button>
+            &nbsp;&nbsp;&nbsp;
+          <button class="btn btn-xs btn-danger" (click)="addTestData()">Add Test Data</button>
+        </span>
+      </div>
+  
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table  datatable [dtOptions]="dtOptions"
+          class="table table-bordered" id="tableId">
+          <thead>
+            <tr style="white-space: nowrap">
+                <th>Emp ID </th>
+                <th>Name</th>
+                <th>Email ID</th>
+                <th>Mobile No</th>
+                <th>Franchise</th>
+                <th>Group</th>
+                <th>Religion</th>
+                <th>Certificate</th>
+                <th>Skill Matrix</th>
+                <th>Calender</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rms of rmss;let sn=index">
+              <td>{{sn+1}}</td>
+              <td>{{rms.name}}</td>
+              <td>{{rms.email}}</td>
+              <td>{{rms.mobile}}</td>
+              <td>{{rms.franchise}}</td>
+              <td>{{rms.group}}</td>
+              <td>{{rms.religion}}</td>
+              <td>{{rms.certificate}}</td>
+              <td>{{rms.skillMatrix}}</td>
+              <td>{{rms.calendar}}</td>
+              <td>{{rms.category}}</td>
+              <td>{{rms.status}}</td><td><i class="glyphicon glyphicon-edit" (click)="edit(rms)" title="Upadate" data-toggle="modal"
+                  data-target="#myModal"></i><i class="glyphicon glyphicon-trash" (click)="delete(rms.id)"
+                  title="Delete"></i></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>Emp ID </th>
+              <th>Name</th>
+              <th>Email ID</th>
+              <th>Mobile No</th>
+              <th>Franchise</th>
+              <th>Group</th>
+              <th>Religion</th>
+              <th>Certificate</th>
+              <th>Skill Matrix</th>
+              <th>Calender</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+        </tfoot>
+        </table>
+      </div>
+  
+      <!-- /.box-body -->
+    </div>
+  
+  
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+  
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">
+              <ng-container *ngIf="rms.id">Update Rms</ng-container>
+              <ng-container *ngIf="!rms.id">Add Rms</ng-container>
+            </h4>
+          </div>
+          <div class="modal-body">
+            <form autocomplete="off" #form="ngForm" novalidate>
+              <div class="form-group">
+                <label for="empId">Employee Id:</label>
+                <input type="text" class="form-control" id="empId" placeholder="Enter Employee Id" name="rms.empId"
+                  [(ngModel)]="rms.empId" #empIdVal="ngModel" required>
+                <p class="text-danger" *ngIf="(empIdVal.touched || empIdVal.dirty) &&  empIdVal.invalid">Please enter employee Id
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name"
+                  name="rms.name" [(ngModel)]="rms.name" #nameVal="ngModel" required>
+                <p class="text-danger" *ngIf="(nameVal.touched || nameVal.dirty) &&  nameVal.invalid">Please
+                  enter name</p>
+              </div>
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email"
+                  name="rms.email" [(ngModel)]="rms.email" #emailVal="ngModel" required>
+                <p class="text-danger" *ngIf="(emailVal.touched || emailVal.dirty) && emailVal.invalid">Please
+                  enter email</p>
+              </div>
+              <div class="form-group">
+                <label for="mobile">Mobile:</label>
+                <input type="number" class="form-control" id="mobile" placeholder="Enter mobile"
+                  name="rms.mobile" [(ngModel)]="rms.mobile" #mobileVal="ngModel" required>
+                <p class="text-danger" *ngIf="(mobileVal.touched || mobileVal.dirty) && mobileVal.invalid">Please
+                  enter mobile</p>
+              </div>
+              <div class="form-group">
+                <label for="franchise">Franchise:</label>
+                <input type="text" class="form-control" id="franchise" placeholder="Enter franchise"
+                  name="rms.franchise" [(ngModel)]="rms.franchise" #franchiseVal="ngModel" required>
+                <p class="text-danger" *ngIf="(franchiseVal.touched || franchiseVal.dirty) && franchiseVal.invalid">Please
+                  enter franchise</p>
+              </div>
+              <div class="form-group">
+                <label for="group">Group:</label>
+                <input type="text" class="form-control" id="group" placeholder="Enter group"
+                  name="rms.group" [(ngModel)]="rms.group" #groupVal="ngModel" required>
+                <p class="text-danger" *ngIf="(groupVal.touched || groupVal.dirty) && groupVal.invalid">Please
+                  enter group</p>
+              </div>
+              <div class="form-group">
+                <label for="religion">Religion:</label>
+                <input type="text" class="form-control" id="religion" placeholder="Enter religion"
+                  name="rms.religion" [(ngModel)]="rms.religion" #religionVal="ngModel" required>
+                <p class="text-danger" *ngIf="(religionVal.touched || religionVal.dirty) && religionVal.invalid">Please
+                  enter religion</p>
+              </div>
+              <div class="form-group">
+                <label for="certificate">Certificate:</label>
+                <input type="text" class="form-control" id="certificate" placeholder="Enter certificate"
+                  name="rms.certificate" [(ngModel)]="rms.certificate" #certificateVal="ngModel" required>
+                <p class="text-danger" *ngIf="(certificateVal.touched || certificateVal.dirty) && certificateVal.invalid">Please
+                  enter certificate</p>
+              </div>
+              <div class="form-group">
+                <label for="skillMatrix">Skill Matrix:</label>
+                <input type="text" class="form-control" id="skillMatrix" placeholder="Enter skillMatrix"
+                  name="rms.skillMatrix" [(ngModel)]="rms.skillMatrix" #skillMatrixVal="ngModel" required>
+                <p class="text-danger" *ngIf="(skillMatrixVal.touched || skillMatrixVal.dirty) && skillMatrixVal.invalid">Please
+                  enter skill matrix</p>
+              </div>
+              <div class="form-group">
+                <label for="calendar">Calender:</label>
+                <input type="text" class="form-control" id="calendar" placeholder="Enter calendar"
+                  name="rms.calendar" [(ngModel)]="rms.calendar" #calendarVal="ngModel" required>
+                <p class="text-danger" *ngIf="(calendarVal.touched || calendarVal.dirty) && calendarVal.invalid">Please
+                  enter calendar</p>
+              </div>
+              <div class="form-group">
+                <label for="category">Category:</label>
+                <input type="text" class="form-control" id="category" placeholder="Enter category"
+                  name="rms.category" [(ngModel)]="rms.category" #categoryVal="ngModel" required>
+                <p class="text-danger" *ngIf="(categoryVal.touched || categoryVal.dirty) && categoryVal.invalid">Please
+                  enter category</p>
+              </div>
+              <div class="form-group">
+                <label for="status">Status:</label>
+                <input type="text" class="form-control" id="status" placeholder="Enter status"
+                  name="rms.status" [(ngModel)]="rms.status" #statusVal="ngModel" required>
+                <p class="text-danger" *ngIf="(statusVal.touched || statusVal.dirty) && statusVal.invalid">Please
+                  enter status</p>
+              </div>
+              <button type="button" class="btn btn-success" (click)="add(form)" [disabled]="form.invalid">
+                <ng-container *ngIf="rms.id">Update</ng-container>
+                <ng-container *ngIf="!rms.id">Add</ng-container>
+              </button>
+            </form>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>

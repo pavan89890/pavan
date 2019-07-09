@@ -23,7 +23,7 @@ export class BanksComponent implements OnInit {
   dtOptions: any = {};
 
   ngOnInit() {
-    this.get();
+   
     this.dtOptions = {
       pagingType: 'full_numbers',
       jQueryUI: false,
@@ -36,6 +36,8 @@ export class BanksComponent implements OnInit {
         'pdf'
       ]
     };
+
+    this.get();
   }
 
   add(form: NgForm) {
@@ -61,14 +63,9 @@ export class BanksComponent implements OnInit {
         }
       }));
       this.dtTrigger.next();
-      $('#tableId').DataTable().clear();
-      $('#tableId').DataTable().destroy();
+      $('#banksTableId').DataTable().clear();
+      $('#banksTableId').DataTable().destroy();
     });
-  }
-
-  ngOnDestroy(): void {
-    // Do not forget to unsubscribe the event
-    //this.apiService.dtTrigger.unsubscribe();
   }
 
   edit(bank: Bank) {
@@ -79,8 +76,6 @@ export class BanksComponent implements OnInit {
     }
 
   }
-
-
 
   delete(id: string) {
     if (confirm("Are you sure you want to delete?")) {

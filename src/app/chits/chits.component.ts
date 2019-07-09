@@ -50,9 +50,7 @@ export class ChitsComponent implements OnInit {
     this.chit.profit=this.chit.actualAmount-this.chit.paidAmount;
 
     this.chit.paidOn=new Date('1-'+this.chit.month+'-'+this.chit.year+'');
-
-    console.log(this.chit.paidOn);
-
+    
     if(this.chit.id){
       this.apiService.updateObject(this.chit.id,this.chit,this.url);
     }else{
@@ -80,8 +78,8 @@ export class ChitsComponent implements OnInit {
         }
       }));
       this.dtTrigger.next();
-      $('#tableId').DataTable().clear();
-      $('#tableId').DataTable().destroy();
+      $('#chitsTableId').DataTable().clear();
+      $('#chitsTableId').DataTable().destroy();
     });
   }
 

@@ -13,6 +13,6 @@
     font-size: 20px;
 }
 
-.table-responsive{
-    margin:5px;
+.dataTables_wrapper{
+    margin:10px;
 }

@@ -12,6 +12,7 @@ declare var $: any;
 export class LoginComponent implements OnInit {
 
   form;
+  isValidUser:boolean=true;
   constructor(private fb: FormBuilder,
     private myRoute: Router,
     private auth: AuthService) {
@@ -24,12 +25,15 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     $("body").removeClass('skin-purple sidebar-mini');
     $("body").css("background-color","#ecf0f5");
+    console.log(this.form);
   }
 
   login(){
     if(this.form.valid && this.form.value.username=="pavan" && this.form.value.password=="java"){
       this.auth.sendToken(this.form.value.username)
       this.myRoute.navigate(["/dashboard"]);
+    }else{
+      this.isValidUser=false;
     }
   }
 
