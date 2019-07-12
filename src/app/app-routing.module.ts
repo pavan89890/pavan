@@ -9,6 +9,7 @@ import { BanksComponent } from './banks/banks.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { RmsComponent } from './rms/rms.component';
+import { MytableComponent } from './mytable/mytable.component';
 
 const routes: Routes = [
   {path: '' ,component:DashboardComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
@@ -19,8 +20,8 @@ const routes: Routes = [
   {path: 'banks' , component: BanksComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'fds' , component: FdsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'chits' , component: ChitsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
-  {path: 'rms' , component: RmsComponent}
-  
+  {path: 'rms' , component: RmsComponent},
+  {path: 'mytable' , component: MytableComponent}
 ];
 
 @NgModule({

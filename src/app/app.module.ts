@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms'
 import { DataTablesModule } from 'angular-datatables';
 import { RmsComponent } from './rms/rms.component';
+import { MytableComponent } from './mytable/mytable.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { RmsComponent } from './rms/rms.component';
     ChitsComponent,
     FdsComponent,
     LoginComponent,
-    RmsComponent
+    RmsComponent,
+    MytableComponent
   ],
   imports: [
     BrowserModule,
