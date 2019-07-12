@@ -30,7 +30,7 @@ export class RmsComponent implements OnInit,AfterViewInit {
     this.dtOptions= {
       pagingType: 'full_numbers',
       processing:true,
-      dom: 'Bfrtip',
+      dom: 'Blfrtip',
       buttons: [
         'copy',
         'print',
@@ -45,7 +45,7 @@ export class RmsComponent implements OnInit,AfterViewInit {
     
      
     $('#tableId tfoot th').each( function (i) {
-      var title = $('#tableId thead th').eq( $(this).index() ).text();
+      var title = $('#tableId tfoot th').eq( $(this).index() ).text();
       $(this).html( '<input type="text" placeholder="Search '+title+'" data-index="'+i+'" />' );
     } );
 
@@ -109,7 +109,7 @@ export class RmsComponent implements OnInit,AfterViewInit {
   }
 
   addTestData(){
-    for(var i=1;i<=10000;i++){
+    for(var i=1;i<=1000;i++){
       let data;
 
       data={

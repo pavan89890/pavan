@@ -40,6 +40,23 @@
                 <th>Actions</th>
             </tr>
           </thead>
+          <tfoot>
+              <tr>
+                <th>Emp ID </th>
+                <th>Name</th>
+                <th>Email ID</th>
+                <th>Mobile No</th>
+                <th>Franchise</th>
+                <th>Group</th>
+                <th>Religion</th>
+                <th>Certificate</th>
+                <th>Skill Matrix</th>
+                <th>Calender</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+          </tfoot>
           <tbody>
             <tr *ngFor="let rms of rmss;let sn=index">
               <td>{{sn+1}}</td>
@@ -58,23 +75,6 @@
                   title="Delete"></i></td>
             </tr>
           </tbody>
-          <tfoot>
-            <tr>
-              <th>Emp ID </th>
-              <th>Name</th>
-              <th>Email ID</th>
-              <th>Mobile No</th>
-              <th>Franchise</th>
-              <th>Group</th>
-              <th>Religion</th>
-              <th>Certificate</th>
-              <th>Skill Matrix</th>
-              <th>Calender</th>
-              <th>Category</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-        </tfoot>
         </table>
       </div>
   
