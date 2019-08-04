@@ -8,7 +8,6 @@ import { ChitsComponent } from './chits/chits.component';
 import { BanksComponent } from './banks/banks.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
-import { RmsComponent } from './rms/rms.component';
 import { MytableComponent } from './mytable/mytable.component';
 
 const routes: Routes = [
@@ -20,7 +19,6 @@ const routes: Routes = [
   {path: 'banks' , component: BanksComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'fds' , component: FdsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
   {path: 'chits' , component: ChitsComponent,pathMatch: 'full' , canActivate: [AuthGuard]},
-  {path: 'rms' , component: RmsComponent},
   {path: 'mytable' , component: MytableComponent}
 ];
 

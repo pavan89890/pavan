@@ -25,7 +25,6 @@ import { FdsComponent } from './fds/fds.component';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms'
 import { DataTablesModule } from 'angular-datatables';
-import { RmsComponent } from './rms/rms.component';
 import { MytableComponent } from './mytable/mytable.component';
 
 @NgModule({
@@ -42,7 +41,6 @@ import { MytableComponent } from './mytable/mytable.component';
     ChitsComponent,
     FdsComponent,
     LoginComponent,
-    RmsComponent,
     MytableComponent
   ],
   imports: [
